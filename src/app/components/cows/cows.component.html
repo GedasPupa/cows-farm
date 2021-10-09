@@ -1,1 +1,30 @@
-<p>cows works!</p>
+<div class="filter">
+  <label>Find cow by name:</label>
+  <input type="text" (input)="onFilter($event)" class="filter-input"/>
+</div>
+<table class='table' *ngIf="filteredCows.length > 0; else noProductsWarning">
+  <thead>
+    <tr>
+      <th>Name <i (click)="onSort('name')" class="fa fa-angle-{{this.field === 'name' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
+      <th>Weight <i (click)="onSort('weight')" class="fa fa-angle-{{this.field === 'weight' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
+      <th>Total Milk <i (click)="onSort('total_milk')" class="fa fa-angle-{{this.field === 'total_milk' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
+      <th>Last Milking Time <i (click)="onSort('last_milk_time')" class="fa fa-angle-{{this.field === 'last_milk_time' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of filteredCows">
+      <td><a [routerLink]="['/cows', item.id]">{{item.name}}</a></td>
+      <td>{{item.weight }}</td>
+      <td>{{item.total_milk}}</td>
+      <td>{{item.last_milk_time.slice(0, 10)}}</td>
+      <td>
+        <button (click)="onDelete(item.id)" class="btn btn-outline-success action">Update</button>
+        <button (click)="onDelete(item.id)" class="btn btn-outline-danger action">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ng-template #noProductsWarning>
+  <p *ngIf="dataLoaded" class="alert alert-warning">Sorry, no data!</p>
+</ng-template>
