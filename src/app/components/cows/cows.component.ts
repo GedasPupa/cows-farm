@@ -1,5 +1,6 @@
+import { Router } from '@angular/router';
 import { CowsService } from './../../services/cows.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ICow } from 'src/app/models/cow';
 
 @Component({
@@ -8,6 +9,8 @@ import { ICow } from 'src/app/models/cow';
   styleUrls: ['./cows.component.css'],
 })
 export class CowsComponent implements OnInit {
+  // @Output() cowClicked: EventEmitter<any> = new EventEmitter<any>();
+
   constructor(private _cowsService: CowsService) {}
   cows: any[] = [];
   filteredCows: any[] = [];
@@ -71,5 +74,11 @@ export class CowsComponent implements OnInit {
     //     console.log(err);
     //   }
     // );
+  }
+
+  onUpdate(cow: any): void {}
+
+  handleCowClick(cow: any): void {
+    // this.cowClicked.emit(cow);
   }
 }

@@ -25,6 +25,7 @@ import { CowComponent } from './components/cow/cow.component';
     RouterModule.forRoot([
       { path: '', component: CowsComponent },
       { path: 'cows', component: CowsComponent },
+      { path: 'cows/:id', component: CowComponent },
       { path: 'add', component: CowComponent },
       { path: '**', redirectTo: 'cows', pathMatch: 'full' },
     ]),

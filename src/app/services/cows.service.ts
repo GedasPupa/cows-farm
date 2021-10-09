@@ -11,4 +11,12 @@ export class CowsService {
   getAllCows(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:3000/cows');
   }
+
+  getOneCow(id: any): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/cows/${id}`);
+  }
+
+  updateCow(cow: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:3000/cows/${cow.id}`, cow);
+  }
 }

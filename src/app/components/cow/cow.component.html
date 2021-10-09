@@ -1,1 +1,42 @@
-<p>cow works!</p>
+<p *ngIf="!formValid" class="alert alert-danger">ERROR! Please make some changes before Updating to DB!</p>
+<form #formInfo="ngForm" action method="GET">
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Wight</th>
+      <th>New Weight</th>
+      <th>Total Milk</th>
+      <th>Day Milk</th>
+      <th>Last Milking Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="cow !== undefined; else noPerson">
+      <td>{{cow.name}}</td>
+      <td>{{cow.weight}}</td>
+      <td><input type="number" [(ngModel)]="cow.weight" name="weight"></td>
+      <td>{{cow.total_milk}}</td>
+      <td><input type="number" ngModel #milkInput="ngModel" name="total_milk"></td>
+      <td><input type="datetime-local" ngModel #dateInput="ngModel" name="last_milk_time"></td>
+    </tr>
+  </tbody>
+</table>
+<p *ngIf="!formInfo.touched && formInfo.submitted" class="alert alert-warning">Form is untuched! Make some changes for saving!</p>
+<p *ngIf="!formInfo.valid && formInfo.submitted && formInfo.touched" class="alert alert-warning">Form is invalid! Make some changes in red fields for saving!</p>
+<ng-template #noPerson>
+  <tr>
+    <td><input type="text" value=''  #inName="ngModel" name="name" ngModel required><p *ngIf="inName.invalid && inName.touched" >Name not valid.</p></td>
+    <td><input type="number" value='' #inS="ngModel" name="weight" ngModel required><p *ngIf="inS.invalid && inS.touched" >Surname not valid.</p></td>
+    <td><input type="number" value='' #inP="ngModel" name="total_milk" ngModel required><p *ngIf="inP.invalid && inP.touched" >Phone not valid.</p></td>
+    <td><input type="datetime-local" value='' #inE="ngModel" name="last_milk_date" ngModel required><p *ngIf="inE.invalid && inE.touched" >Email not valid.</p></td>
+  </tr>
+  <br>
+</ng-template>
+<div class="delete-edit-btns">
+  <button class="btn btn-dark" (click)="onBack()">Back</button>
+  <button *ngIf="!!cow" type="button" (click)="onDelete(cow.id)" class="btn btn-danger" >Delete</button>
+  <button *ngIf="!!cow" type="button" (click)="onUpdate()" class="btn btn-warning">Update</button>
+  <button *ngIf="!cow" type="button" (click)="onCreate()" class="btn btn-success">Save</button>
+</div>
+</form>

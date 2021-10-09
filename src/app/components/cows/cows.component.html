@@ -14,12 +14,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of filteredCows">
-      <td><a [routerLink]="['/cows', item.id]">{{item.name}}</a></td>
+      <td><a [routerLink]="['/cows', item.id]" (click)="handleCowClick(item)">{{item.name}}</a></td>
       <td>{{item.weight }}</td>
       <td>{{item.total_milk}}</td>
-      <td>{{item.last_milk_time.slice(0, 10)}}</td>
+      <td>{{item.last_milk_time.slice(0, 16)}}</td>
       <td>
-        <button (click)="onDelete(item.id)" class="btn btn-outline-success action">Update</button>
+        <button [routerLink]="['/cows', item.id]" (click)="onUpdate(item)" class="btn btn-outline-success action">Update</button>
         <button (click)="onDelete(item.id)" class="btn btn-outline-danger action">Delete</button>
       </td>
     </tr>
