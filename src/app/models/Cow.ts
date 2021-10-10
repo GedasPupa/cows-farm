@@ -3,7 +3,7 @@ interface ICow {
   name: string;
   weight: number;
   total_milk: number;
-  last_milk_time: Date;
+  last_milk_time: string;
 }
 
 export { ICow };

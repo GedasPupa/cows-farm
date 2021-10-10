@@ -1,14 +1,14 @@
-<p *ngIf="!formValid" class="alert alert-danger">ERROR! Please make some changes before Updating to DB!</p>
+<p *ngIf="!formValid && !formInfo.dirty" class="alert alert-danger">ERROR! Please make some changes before Updating to DB!</p>
 <form #formInfo="ngForm" action method="GET">
 <table class='table'>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Wight</th>
+      <th>Weight</th>
       <th>New Weight</th>
       <th>Total Milk</th>
       <th>Day Milk</th>
-      <th>Last Milking Time</th>
+      <th>Enter Milking Time</th>
     </tr>
   </thead>
   <tbody>
@@ -34,9 +34,9 @@
   <br>
 </ng-template>
 <div class="delete-edit-btns">
-  <button class="btn btn-dark" (click)="onBack()">Back</button>
-  <button *ngIf="!!cow" type="button" (click)="onDelete(cow.id)" class="btn btn-danger" >Delete</button>
-  <button *ngIf="!!cow" type="button" (click)="onUpdate()" class="btn btn-warning">Update</button>
-  <button *ngIf="!cow" type="button" (click)="onCreate()" class="btn btn-success">Save</button>
+  <button class="btn btn-outline-dark" (click)="onBack()">Back</button>
+  <button *ngIf="!!cow" type="button" (click)="onDelete(cow.id)" class="btn btn-outline-danger" >Delete</button>
+  <button *ngIf="!!cow" type="button" (click)="onUpdate()" class="btn btn-outline-warning">Update</button>
+  <button *ngIf="!cow" type="button" (click)="onCreate()" class="btn btn-outline-success">Save</button>
 </div>
 </form>

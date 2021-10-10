@@ -1,3 +1,4 @@
+import { ICow } from 'src/app/models/Cow';
 import { CowsService } from './../../services/cows.service';
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,8 +10,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./cow.component.css'],
 })
 export class CowComponent implements OnInit, OnDestroy {
-  id: any;
-  cow: any;
+  id: string | null = null;
+  cow!: ICow;
   sub: any;
   formValid: boolean = true;
 
@@ -47,16 +48,16 @@ export class CowComponent implements OnInit, OnDestroy {
   }
 
   onBack(): void {
-    this._router.navigate(['cows']);
+    this._router.navigate(['/cows']);
   }
 
   onCreate() {}
 
-  onUpdate() {
+  onUpdate(): void {
     this.dateInput.value == ''
       ? (this.cow.last_milk_time = new Date().toISOString().slice(0, 16))
       : (this.cow.last_milk_time = this.dateInput.value);
-    this.cow.total_milk += +this.milkInfo.value;
+    this.cow!.total_milk += +this.milkInfo.value;
     if (this.formInfo.dirty) {
       this._cowsService.updateCow(this.cow).subscribe(
         (res) => {
@@ -71,14 +72,14 @@ export class CowComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number): void {
-    // this._cowsService.deleteOne(id).subscribe(
-    //   (res) => {
-    //     this.persons = this.persons.filter((p) => p.id !== id);
-    //     this.filterData = this.persons;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //   }
-    // );
+    this._cowsService.deleteCow(id).subscribe(
+      (res) => {
+        alert(`Cow ${this.cow.name} successfuly deleted from DB!`);
+        this._router.navigate(['/cows']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
