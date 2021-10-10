@@ -1,6 +1,7 @@
 <p *ngIf="!formValid && !formInfo.dirty" class="alert alert-danger">ERROR! Please make some changes before Updating to DB!</p>
 <form #formInfo="ngForm" action method="GET">
-<table class='table'>
+<h5 *ngIf="cow !== undefined">Update cow {{cow.name}}</h5>
+<table class='table' *ngIf="cow !== undefined; else noPerson" >
   <thead>
     <tr>
       <th>Name</th>
@@ -8,11 +9,11 @@
       <th>New Weight</th>
       <th>Total Milk</th>
       <th>Day Milk</th>
-      <th>Enter Milking Time</th>
+      <th>Milking Time</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngIf="cow !== undefined; else noPerson">
+    <tr>
       <td>{{cow.name}}</td>
       <td>{{cow.weight}}</td>
       <td><input type="number" [(ngModel)]="cow.weight" name="weight"></td>
@@ -25,13 +26,25 @@
 <p *ngIf="!formInfo.touched && formInfo.submitted" class="alert alert-warning">Form is untuched! Make some changes for saving!</p>
 <p *ngIf="!formInfo.valid && formInfo.submitted && formInfo.touched" class="alert alert-warning">Form is invalid! Make some changes in red fields for saving!</p>
 <ng-template #noPerson>
-  <tr>
-    <td><input type="text" value=''  #inName="ngModel" name="name" ngModel required><p *ngIf="inName.invalid && inName.touched" >Name not valid.</p></td>
-    <td><input type="number" value='' #inS="ngModel" name="weight" ngModel required><p *ngIf="inS.invalid && inS.touched" >Surname not valid.</p></td>
-    <td><input type="number" value='' #inP="ngModel" name="total_milk" ngModel required><p *ngIf="inP.invalid && inP.touched" >Phone not valid.</p></td>
-    <td><input type="datetime-local" value='' #inE="ngModel" name="last_milk_date" ngModel required><p *ngIf="inE.invalid && inE.touched" >Email not valid.</p></td>
-  </tr>
-  <br>
+  <h5>Create new cow</h5>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Total Milk</th>
+        <th>Milking Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" #inName="ngModel" name="name" ngModel required><p *ngIf="inName.invalid && inName.touched" >Name not valid.</p></td>
+        <td><input type="number" #inWeight="ngModel" name="weight" ngModel required><p *ngIf="inWeight.invalid && inWeight.touched" >Weight not valid.</p></td>
+        <td><input type="number" #inMilk="ngModel" name="total_milk" ngModel></td>
+        <td><input type="datetime-local" #inDate="ngModel" name="last_milk_date" ngModel></td>
+      </tr>
+    </tbody>
+  </table>
 </ng-template>
 <div class="delete-edit-btns">
   <button class="btn btn-outline-dark" (click)="onBack()">Back</button>

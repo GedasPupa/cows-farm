@@ -1,3 +1,4 @@
+import { ICow } from 'src/app/models/Cow';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,6 +19,10 @@ export class CowsService {
 
   deleteCow(id: number) {
     return this.http.delete(`http://localhost:3000/cows/${id}`);
+  }
+
+  createCow(cow: ICow): Observable<ICow> {
+    return this.http.post<ICow>(`http://localhost:3000/cows`, cow);
   }
 
   updateCow(cow: any): Observable<any> {

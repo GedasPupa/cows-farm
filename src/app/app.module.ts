@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { CowsComponent } from './components/cows/cows.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CowComponent } from './components/cow/cow.component';
+import { CowsFarmComponent } from './components/cows-farm/cows-farm.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +18,18 @@ import { CowComponent } from './components/cow/cow.component';
     CowsComponent,
     FooterComponent,
     CowComponent,
+    CowsFarmComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot([
-      { path: '', component: CowsComponent },
+      { path: '', component: CowsFarmComponent },
       { path: 'cows', component: CowsComponent },
       { path: 'cows/:id', component: CowComponent },
       { path: 'add', component: CowComponent },
-      { path: '**', redirectTo: 'cows', pathMatch: 'full' },
+      { path: '**', redirectTo: '', pathMatch: 'full' },
     ]),
   ],
   providers: [],

@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Cows Farm</a>
+        <a class="navbar-brand" [routerLink]="['/']">Cows Farm</a>
         <button
           class="navbar-toggler"
           type="button"

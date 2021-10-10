@@ -15,9 +15,21 @@ export class CowComponent implements OnInit, OnDestroy {
   sub: any;
   formValid: boolean = true;
 
+  cow2: ICow = {
+    id: 0,
+    name: '',
+    weight: 0,
+    total_milk: 0,
+    last_milk_time: '',
+  };
+
   @ViewChild('formInfo') formInfo!: NgForm;
   @ViewChild('milkInput') milkInfo!: NgForm;
   @ViewChild('dateInput') dateInput!: NgForm;
+  @ViewChild('inName') inName!: NgForm;
+  @ViewChild('inWeight') inWeight!: NgForm;
+  @ViewChild('inMilk') inMilk!: NgForm;
+  @ViewChild('inDate') inDate!: NgForm;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -51,7 +63,23 @@ export class CowComponent implements OnInit, OnDestroy {
     this._router.navigate(['/cows']);
   }
 
-  onCreate() {}
+  onCreate() {
+    this.cow2.name = this.inName.value;
+    this.cow2.weight = +this.inWeight.value;
+    this.inMilk.value == ''
+      ? (this.cow2.total_milk = 0)
+      : (this.cow2.total_milk = +this.inMilk.value);
+    this.inDate.value == ''
+      ? (this.cow2.last_milk_time = new Date().toISOString().slice(0, 16))
+      : (this.cow2.last_milk_time = this.inDate.value);
+    this._cowsService.createCow(this.cow2).subscribe(
+      (res) => {
+        alert(`Cow ${this.cow2.name} successfully created and added to DB!`);
+        this._router.navigate(['/cows']);
+      },
+      (err) => console.log(err)
+    );
+  }
 
   onUpdate(): void {
     this.dateInput.value == ''
@@ -61,7 +89,7 @@ export class CowComponent implements OnInit, OnDestroy {
     if (this.formInfo.dirty) {
       this._cowsService.updateCow(this.cow).subscribe(
         (res) => {
-          alert(`Cow ${this.cow.name} successfuly updated!`);
+          alert(`Cow ${this.cow.name} successfully updated!`);
           this._router.navigate([`/cows/${this.cow.id}`]);
         },
         (err) => console.log(err)
@@ -74,7 +102,7 @@ export class CowComponent implements OnInit, OnDestroy {
   onDelete(id: number): void {
     this._cowsService.deleteCow(id).subscribe(
       (res) => {
-        alert(`Cow ${this.cow.name} successfuly deleted from DB!`);
+        alert(`Cow ${this.cow.name} successfully deleted from DB!`);
         this._router.navigate(['/cows']);
       },
       (err) => {
