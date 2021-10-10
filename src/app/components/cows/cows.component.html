@@ -8,7 +8,7 @@
     <tr>
       <th>Name <i (click)="onSort('name')" class="fa fa-angle-{{this.field === 'name' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
       <th>Weight <i (click)="onSort('weight')" class="fa fa-angle-{{this.field === 'weight' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
-      <th>Total Milk <i (click)="onSort('total_milk')" class="fa fa-angle-{{this.field === 'total_milk' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
+      <th>Milk <i (click)="onSort('total_milk')" class="fa fa-angle-{{this.field === 'total_milk' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
       <th>Last Milking Time <i (click)="onSort('last_milk_time')" class="fa fa-angle-{{this.field === 'last_milk_time' ? (this.sortAsc ? 'down' : 'up') : 'down'}}"></i></th>
       <th>Actions</th>
     </tr>
@@ -25,6 +25,13 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+      <td>Total cows: <span *ngIf="recordsLoaded">{{total_records}}</span></td>
+      <td></td>
+      <td>Total milk: <span *ngIf="recordsLoaded">{{total_milk_sum}}</span></td>
+      <td></td>
+      <td></td>
+  </tfoot>
 </table>
 <ng-template #noCowsWarning>
   <p *ngIf="dataLoaded" class="alert alert-warning">Sorry, no data!</p>

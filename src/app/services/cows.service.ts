@@ -28,4 +28,12 @@ export class CowsService {
   updateCow(cow: any): Observable<any> {
     return this.http.put<any>(`http://localhost:3000/cows/${cow.id}`, cow);
   }
+
+  getRecordsSum(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/sum`);
+  }
+
+  getTotalMilk(): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/milk-sum`);
+  }
 }

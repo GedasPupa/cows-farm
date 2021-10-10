@@ -6,7 +6,11 @@
 }
 
 .btn.action {
-  padding: 0px 7px;
+  padding: 2px 7px;
   margin-right: 15px;
   font-weight: 600;
+}
+
+tfoot td {
+  font-weight: bold;
 }

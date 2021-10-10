@@ -14,6 +14,9 @@ export class CowsComponent implements OnInit {
   field: string = '';
   sortAsc: boolean = true;
   dataLoaded: boolean = false;
+  total_records: number = 0;
+  total_milk_sum: number = 0;
+  recordsLoaded: boolean = false;
 
   ngOnInit() {
     this._cowsService.getAllCows().subscribe(
@@ -27,6 +30,8 @@ export class CowsComponent implements OnInit {
         this.dataLoaded = true;
       }
     );
+    this.getCowsSum();
+    this.getTotalMilk();
   }
 
   onFilter($event: any): void {
@@ -62,10 +67,31 @@ export class CowsComponent implements OnInit {
         );
         this.cows = this.cows.filter((cow) => cow.id !== id);
         this.filteredCows = this.cows;
+        this.getCowsSum();
+        this.getTotalMilk();
       },
       (err) => {
         console.log(err);
       }
+    );
+  }
+
+  getCowsSum() {
+    this._cowsService.getRecordsSum().subscribe(
+      (res) => {
+        this.total_records = res.total_records;
+        this.recordsLoaded = true;
+      },
+      (err) => console.log(err)
+    );
+  }
+
+  getTotalMilk() {
+    this._cowsService.getTotalMilk().subscribe(
+      (res) => {
+        this.total_milk_sum = res.total_milk_sum;
+      },
+      (err) => console.log(err)
     );
   }
 }

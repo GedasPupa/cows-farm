@@ -59,10 +59,18 @@ import { Component, OnInit } from '@angular/core';
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
               <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <a href="#!" class="text-reset">Pricing</a>
+                <a
+                  href="https://github.com/GedasPupa/cows-farm"
+                  class="text-reset"
+                  >Project GIT</a
+                >
               </p>
               <p>
-                <a href="#!" class="text-reset">Buying</a>
+                <a
+                  href="https://github.com/GedasPupa/cows-nodejs-mysql"
+                  class="text-reset"
+                  >Nodejs server GIT</a
+                >
               </p>
               <p>
                 <a href="#!" class="text-reset">Help</a>
