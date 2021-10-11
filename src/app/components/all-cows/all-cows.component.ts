@@ -41,7 +41,7 @@ import { CowsService } from 'src/app/services/cows.service';
       <button type="submit" (click)="addCow()">Add</button>
     </form>
     <div class="cows-list">
-      <app-one-cow *ngFor="let cow of cows" [cowFromParent]="cow"></app-one-cow>
+      <app-one-cow *ngFor="let cow of cows" [cowFromParent]="cow" (onDelete1)="onDelete($event)"></app-one-cow>
     </div>
   `,
   styleUrls: ['./all-cows.component.css'],
@@ -85,5 +85,24 @@ export class AllCowsComponent implements OnInit {
     } else {
       this.formValid = false;
     }
+  }
+
+  onDelete(id: number): void {
+    this._cowsService.deleteCow(id).subscribe(
+      (res) => {
+        alert(
+          `Cow ${
+            this.cows.find((c) => c.id == id)?.name
+          } successfuly deleted from DB!`
+        );
+        this.cows = this.cows.filter((cow) => cow.id !== id);
+        this.filteredCows = this.cows;
+        // this.getCowsSum();
+        // this.getTotalMilk();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

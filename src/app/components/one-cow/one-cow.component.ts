@@ -1,5 +1,5 @@
 import { NgForm } from '@angular/forms';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ICow } from 'src/app/models/Cow';
 import { CowsService } from 'src/app/services/cows.service';
 
@@ -38,7 +38,9 @@ import { CowsService } from 'src/app/services/cows.service';
         >
           Update
         </button>
-        <button href="#" class="card-link">Delete</button>
+        <button (click)="onDelete(cowFromParent.id)" class="card-link">
+          Delete
+        </button>
       </div>
     </form>
   `,
@@ -46,7 +48,9 @@ import { CowsService } from 'src/app/services/cows.service';
 })
 export class OneCowComponent implements OnInit {
   @Input() cowFromParent!: ICow;
-  @ViewChild('oneCowInfo') oneCowInfo!: NgForm;
+  @Output() onDelete1: EventEmitter<number> = new EventEmitter<number>();
+  @ViewChild('oneCowInfo')
+  oneCowInfo!: NgForm;
   constructor(private _cowsService: CowsService) {}
   cow!: ICow;
 
@@ -72,5 +76,9 @@ export class OneCowComponent implements OnInit {
       (res) => console.log(res),
       (err) => console.log(err)
     );
+  }
+
+  onDelete(id: number): void {
+    this.onDelete1.emit(id);
   }
 }

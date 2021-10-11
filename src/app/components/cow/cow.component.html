@@ -39,8 +39,8 @@
     <tbody>
       <tr>
         <td><input type="text" #inName="ngModel" name="name" ngModel required><p *ngIf="inName.invalid && inName.touched" >Name not valid.</p></td>
-        <td><input type="number" #inWeight="ngModel" name="weight" ngModel required><p *ngIf="inWeight.invalid && inWeight.touched" >Weight not valid.</p></td>
-        <td><input type="number" #inMilk="ngModel" name="total_milk" ngModel></td>
+        <td><input type="number" min="0" max="9999" #inWeight="ngModel" name="weight" ngModel required><p *ngIf="inWeight.invalid && inWeight.touched" >Weight not valid.</p></td>
+        <td><input type="number" min="0" max="99999" #inMilk="ngModel" name="total_milk" ngModel></td>
         <td><input type="datetime-local" #inDate="ngModel" name="last_milk_date" ngModel></td>
       </tr>
     </tbody>
