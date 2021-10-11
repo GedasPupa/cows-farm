@@ -32,24 +32,26 @@ _Educational project_
 src
 ├── app
 │   ├── components
-│   |  ├── app                
+│   |  ├── all-cows                  // 2nd solution (AllCowsComponent + OneCowComponent)
+│   |  ├── app 
 |   │  |  ├── app.component.css
 |   │  |  ├── app.component.html
 |   │  |  ├── app.component.spec.ts
-|   │  |  └── app.component.ts  // same file structure in all components
-│   |  ├── cow                  
-│   |  ├── cows
-│   |  ├── cows-farm
+|   │  |  └── app.component.ts       // same file structure in all components               
+│   |  ├── cow                       // 1st solution (add/edit page - one component)
+│   |  ├── cows                      // 1st solution (cows list)
+│   |  ├── cows-farm                 // home (about) page
 │   |  ├── footer
-|   |  └── header       
+│   |  ├── header
+|   |  └── one-cow                   // 2nd solution (AllCowsComponent + OneCowComponent)
 │   ├── guards
-│   |  ├── cows.guard.spec.ts
-|   │  └── cows.guard.ts
+│   |  ├── cows.guard.spec.ts        
+|   │  └── cows.guard.ts             // TODO
 │   ├── models
 |   │  └── Cow.ts
 │   ├── pipes
 │   |  ├── capitalize-first.pipe.ts
-|   │  └── to-space.pipe.ts
+|   │  └── to-space.pipe.ts           // TODO
 │   ├── services
 │   |  ├── cows.service.spec.ts
 |   │  └── cows.service.ts
