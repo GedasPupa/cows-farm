@@ -1,27 +1,93 @@
-# CowsFarm
+[![TypeScript](https://badgen.net/badge/icon/typescript?icon=typescript&label)](https://typescriptlang.org)
+# COWS FARM. Full-stack application.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+_Educational project_
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular 12 (front-end)
+- Node.js, ExpressJS (server-side)
+- MySQL (database)
 
-## Code scaffolding
+## Task
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Užduotis 1. Sukurkite duomenų bazės lentelę pagal schemą: Duomenų bazės pavadinimą sugalvokite patys. Jeigu reikia, duomenų bazės lentelę galite papildyti papildomais stulpeliais.
+  ![alt task-1](.\src\assets\task_1.jpg)
 
-## Build
+- Užduotis 2. Naudodami Angular karkasą arba React biblioteką sukurkite vieno puslapio aplikaciją (SPA), kurioje vartotojas galėtų atlikti pilną gyvulių fermos administravimą (CRUD). Kiekvienas gyvulys turi turėti savo vizualiai atskirtą aprašą, kuriame būtų pateikta visa informaciją apie jį. Šalia turi būti mygtukas “Trinti”, kurį paspaudus atitinkamo gyvulio įrašas būtų pašalinamas iš duomenų bazės. Šalia gyvulio svorio (kilogramais) turi būti laukelis su naujo svorio įvedimu. Šalia įrašo su paskutinio melžimo data turi būti laukelis su naujos datos įvedimu. Šalia laukelio su pieno kiekiu (litrais) turi būti laukelis, kuriame galima būtų įvesti tos dienos pieno kiekį. Dienos pieno (aka: vienos karvės, ne visų!!!) kiekis sumuojasi su bendru kiekiu ir suma įrašoma į duomenų bazę. Duomenų redagavimas turi būti atliekamas paspaudus “Redaguoti” mygtuką. Gyvulių aprašo viršuje (arba apačioje) turi būti atvaizduota tuščia forma su naujam gyvuliui įvesti ir mygtukas “Pridėti” formos vykdymui.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Užduotis 3. Serveryje sukurkite prisijungimą prie duomenų bazės, web serverį, maršrutizatorių ir visą bendravimo su naršykle logiką, užtikrinančią 2 užduoties įgyvendinimą serveryje. Informacijos apsikeitimas tarp serverio ir naršyklės turi vykti JSON formatu.
 
-## Running unit tests
+- Užduotis 4. Sukurkite naršyklėje esančio javascript bendravimo mechanizmą su serveriu, naudojant atitinkamus užklausų metodus, asinchroniškai siunčiamus į serverį. Dinamiškai renderinkite vaizdą naudodami Angular ar React, pagal duomenis JSON formatu gaunamus iš serverio.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Užduotis 5. Sukurkite statistikos laukelius, kuriuose būtų atvaizduojamas gyvulių kiekis ir bendras pieno kiekis (duomenys gaunami iš serverio duomenų bazės) Keičiantis duomenų bazės įrašams automatiškai turi keistis ir statistika.
 
-## Running end-to-end tests
+- Užduotis 6. Sukurkite rūšiavimo galimybę pagal gyvulio svorį ir pieno kiekį (sukurkite du mygtukus, kuriuos paspaudus gyvulių aprašai išsirikiuotų atitinkama tvarka). Tam panaudokite  Angular ar React galimybes (ne serverio).
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- __Užduoties pristatymas:__ Aplikacija turi atrodyti estetiškai ir turi būti padaryta adaptyvaus dydžio (responsive). Visi įvedami laukai turi būti tikrinami (kad nebūtų galima vykdyti SQL injekcijų ir k.t.) Vartotojui įvedus nekorektiškus/neteisingus duomenis turi būti parodomas pranešimas apie neteisingai įvestus duomenis. Vartotojui teisingai atlikus įvedimo/trynimo/redagavimo operaciją turi būti parodomas pranešimas apie sėkmingą operaciją. Galite prisidėti prie aplikacijos tobulinimo ir pridėti naujų, sąlygoje neaprašytų funkcionalumų ar vartotojo patirtį gerinančių patobulinimų. Papildomus dalykus užduotyje pridėkite tik tada, kai pilnai įvykdėte visas užduotis
 
-## Further help
+## Folder structure
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+src
+├── app
+│   ├── components
+│   |  ├── app                
+|   │  |  ├── app.component.css
+|   │  |  ├── app.component.html
+|   │  |  ├── app.component.spec.ts
+|   │  |  └── app.component.ts  // same file structure in all components
+│   |  ├── cow                  
+│   |  ├── cows
+│   |  ├── cows-farm
+│   |  ├── footer
+|   |  └── header       
+│   ├── guards
+│   |  ├── cows.guard.spec.ts
+|   │  └── cows.guard.ts
+│   ├── models
+|   │  └── Cow.ts
+│   ├── pipes
+│   |  ├── capitalize-first.pipe.ts
+|   │  └── to-space.pipe.ts
+│   ├── services
+│   |  ├── cows.service.spec.ts
+|   │  └── cows.service.ts
+│   └── app.module.ts
+├── assets
+│   └── task_1.jpg
+├── environments
+│   ├── environments.prod.ts
+│   └── environments.ts
+├── favicon.ico
+├── index.html
+├── main.ts
+├── polyfills.ts
+├── styles.css
+└── test.ts
+ ```
+
+## Launch procedure
+
+### 1. Database (MySQL) dump file:
+```
+https://github.com/GedasPupa/cows-nodejs-mysql/blob/master/dump_cows_farm.sql
+```
+
+### 2. Node.js server:
+```
+git clone https://github.com/GedasPupa/cows-nodejs-mysql.git
+Packages:     npm install
+Launch:       npm start
+```
+### 3. Angular App (FE):
+```
+git clone https://github.com/GedasPupa/cows-farm.git
+Packages:     npm install
+Launch:       ng serve -o
+Build:        ng build
+```
+
+## Teacher
+
+[Mindaugas Bernatavičius](https://github.com/MindaugasBernatavicius)
