@@ -41,7 +41,11 @@ import { CowsService } from 'src/app/services/cows.service';
       <button type="submit" (click)="addCow()">Add</button>
     </form>
     <div class="cows-list">
-      <app-one-cow *ngFor="let cow of cows" [cowFromParent]="cow" (onDelete1)="onDelete($event)"></app-one-cow>
+      <app-one-cow
+        *ngFor="let cow of cows"
+        [cowFromParent]="cow"
+        (onDelete1)="onDelete($event)"
+      ></app-one-cow>
     </div>
   `,
   styleUrls: ['./all-cows.component.css'],
@@ -73,10 +77,9 @@ export class AllCowsComponent implements OnInit {
 
   addCow() {
     if (this.newCow.valid) {
-      console.log(this.newCow.value);
       this.cow = this._cowsService.createCow(this.newCow.value).subscribe(
         (res) => {
-          this.cows.push(this.newCow.value);
+          this.cows.push(res);
           this.filteredCows = this.cows;
         },
         (err) => console.log(err)
