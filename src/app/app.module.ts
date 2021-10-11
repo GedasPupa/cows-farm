@@ -10,6 +10,8 @@ import { CowsComponent } from './components/cows/cows.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CowComponent } from './components/cow/cow.component';
 import { CowsFarmComponent } from './components/cows-farm/cows-farm.component';
+import { OneCowComponent } from './components/one-cow/one-cow.component';
+import { AllCowsComponent } from './components/all-cows/all-cows.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { CowsFarmComponent } from './components/cows-farm/cows-farm.component';
     FooterComponent,
     CowComponent,
     CowsFarmComponent,
+    OneCowComponent,
+    AllCowsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,7 @@ import { CowsFarmComponent } from './components/cows-farm/cows-farm.component';
       { path: 'cows', component: CowsComponent },
       { path: 'cows/:id', component: CowComponent },
       { path: 'add', component: CowComponent },
+      { path: 'one', component: AllCowsComponent },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ]),
   ],
