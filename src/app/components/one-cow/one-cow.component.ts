@@ -66,8 +66,8 @@ export class OneCowComponent implements OnInit {
     this.cow.last_milk_time =
       this.oneCowInfo.value.last_milk_time != ''
         ? this.oneCowInfo.value.last_milk_time
-        : new Date().toISOString();
-
+        : new Date().toISOString().slice(0, 16);
+    console.log(this.cow);
     this._cowsService.updateCow(this.cow).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
