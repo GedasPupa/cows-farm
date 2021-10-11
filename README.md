@@ -12,7 +12,7 @@ _Educational project_
 ## Task
 
 - Užduotis 1. Sukurkite duomenų bazės lentelę pagal schemą: Duomenų bazės pavadinimą sugalvokite patys. Jeigu reikia, duomenų bazės lentelę galite papildyti papildomais stulpeliais.
-  ![alt task-1](.\src\assets\task_1.jpg)
+  ![alt task-1](https://github.com/GedasPupa/cows-farm/blob/master/src/assets/task_1.jpg)
 
 - Užduotis 2. Naudodami Angular karkasą arba React biblioteką sukurkite vieno puslapio aplikaciją (SPA), kurioje vartotojas galėtų atlikti pilną gyvulių fermos administravimą (CRUD). Kiekvienas gyvulys turi turėti savo vizualiai atskirtą aprašą, kuriame būtų pateikta visa informaciją apie jį. Šalia turi būti mygtukas “Trinti”, kurį paspaudus atitinkamo gyvulio įrašas būtų pašalinamas iš duomenų bazės. Šalia gyvulio svorio (kilogramais) turi būti laukelis su naujo svorio įvedimu. Šalia įrašo su paskutinio melžimo data turi būti laukelis su naujos datos įvedimu. Šalia laukelio su pieno kiekiu (litrais) turi būti laukelis, kuriame galima būtų įvesti tos dienos pieno kiekį. Dienos pieno (aka: vienos karvės, ne visų!!!) kiekis sumuojasi su bendru kiekiu ir suma įrašoma į duomenų bazę. Duomenų redagavimas turi būti atliekamas paspaudus “Redaguoti” mygtuką. Gyvulių aprašo viršuje (arba apačioje) turi būti atvaizduota tuščia forma su naujam gyvuliui įvesti ir mygtukas “Pridėti” formos vykdymui.
 
